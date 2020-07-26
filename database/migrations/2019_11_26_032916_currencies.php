@@ -19,7 +19,7 @@ class Currencies extends Migration
             $table->string('kind')->index();
             $table->string('code')->unique();
             $table->string('symbol')->nullable();
-            $table->integer('fixed')->default(0);
+            $table->integer('decimal')->default(0);
             $table->integer('country_id')->nullable();
             $table->json('options')->default(new Expression('(JSON_OBJECT())'));
             $table->json('details')->default(new Expression('(JSON_OBJECT())'));

@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Facades\Schema;
 
-class Statuses extends Migration
+class Descriptions extends Migration
 {
     /**
      * Run the migrations.
@@ -14,17 +14,19 @@ class Statuses extends Migration
      */
     public function up()
     {
-        Schema::create('statuses', function (Blueprint $table) {
+        Schema::create('descriptions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('kind')->index();
+            $table->text('body')->nullable();
+            $table->integer('locale_id')->index();
             $table->morphs('subjectable');
-            $table->morphs('author');
+            $table->json('meta')->default(new Expression('(JSON_OBJECT())'));
             $table->timestampsTz();
-            // -----------------------------
+            
             $table->unique([
+                'locale_id',
                 'subjectable_id',
                 'subjectable_type',
-            ],  'status_unique');
+            ],  'description_unique');
         });
     }
 
@@ -35,6 +37,6 @@ class Statuses extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('statuses');
+        Schema::dropIfExists('descriptions');
     }
 }

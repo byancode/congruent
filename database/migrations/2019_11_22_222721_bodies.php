@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Facades\Schema;
 
-class Biographies extends Migration
+class Bodies extends Migration
 {
     /**
      * Run the migrations.
@@ -14,19 +14,19 @@ class Biographies extends Migration
      */
     public function up()
     {
-        Schema::create('biographies', function (Blueprint $table) {
+        Schema::create('bodies', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('biography')->nullable();
-            $table->integer('locale_id')->index();
+            $table->text('text')->nullable();
             $table->morphs('subjectable');
+            $table->integer('locale_id')->index();
             $table->json('meta')->default(new Expression('(JSON_OBJECT())'));
             $table->timestampsTz();
-            
+            // -----------------------------------
             $table->unique([
                 'locale_id',
                 'subjectable_id',
                 'subjectable_type',
-            ],  'biography_unique');
+            ],  'text_unique');
         });
     }
 
@@ -37,6 +37,6 @@ class Biographies extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('biographies');
+        Schema::dropIfExists('bodies');
     }
 }

@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Facades\Schema;
 
-class Statuses extends Migration
+class Mergers extends Migration
 {
     /**
      * Run the migrations.
@@ -14,17 +14,20 @@ class Statuses extends Migration
      */
     public function up()
     {
-        Schema::create('statuses', function (Blueprint $table) {
+        Schema::create('mergers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('kind')->index();
-            $table->morphs('subjectable');
             $table->morphs('author');
+            $table->morphs('subjectable');
+            $table->boolean('clip')->default(false);
             $table->timestampsTz();
             // -----------------------------
             $table->unique([
+                'author_id',
+                'author_type',
                 'subjectable_id',
                 'subjectable_type',
-            ],  'status_unique');
+            ],  'merger_unique');
         });
     }
 
@@ -35,6 +38,6 @@ class Statuses extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('statuses');
+        Schema::dropIfExists('mergers');
     }
 }
