@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Facades\Schema;
 
-class Collections extends Migration
+class Activities extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,18 @@ class Collections extends Migration
      */
     public function up()
     {
-        Schema::create('collectionables', function (Blueprint $table) {
+        Schema::create('activities', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('collection_id');
-            $table->morphs('collectionable');
+            $table->morphs('author');
+            $table->morphs('subjectable');
             $table->timestampsTz();
+            // -----------------------------
+            $table->unique([
+                'author_id',
+                'author_type',
+                'subjectable_id',
+                'subjectable_type',
+            ],  'activity_unique');
         });
     }
 
@@ -29,6 +36,6 @@ class Collections extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('collectionables');
+        Schema::dropIfExists('activities');
     }
 }
