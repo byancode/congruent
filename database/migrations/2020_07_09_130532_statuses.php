@@ -16,15 +16,10 @@ class Statuses extends Migration
     {
         Schema::create('statuses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('kind')->index();
-            $table->morphs('subjectable');
-            $table->morphs('author');
+            $table->string('kind');
+            $table->morphs('subjectable', 'jF2acu');
+            $table->morphs('author', 'NMQs4T');
             $table->timestampsTz();
-            // -----------------------------
-            $table->unique([
-                'subjectable_id',
-                'subjectable_type',
-            ],  'status_unique');
         });
     }
 
