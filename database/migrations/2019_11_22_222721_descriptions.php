@@ -16,11 +16,11 @@ class Descriptions extends Migration
     {
         Schema::create('descriptions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('kind')->index();
+            $table->string('kind');
             $table->text('body')->nullable();
             $table->integer('locale_id')->index();
             $table->morphs('subjectable');
-            $table->json('meta')->default(new Expression('(JSON_OBJECT())'));
+            $table->json('data')->default(new Expression('(JSON_OBJECT())'));
             $table->timestampsTz();
             
             $table->unique([

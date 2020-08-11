@@ -6,7 +6,9 @@
             "email": "byancode@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "byancode/auth": "dev-master"
+    },
     "extra": {
         "laravel": {
             "providers": [

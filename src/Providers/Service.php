@@ -2,6 +2,9 @@
 
 namespace Byancode\Congruent\Providers;
 
+use Illuminate\Http\Request;
+use Byancode\Congruent\Signin;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 
 class Service extends ServiceProvider
@@ -28,7 +31,7 @@ class Service extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../config/congruent.php' => config_path('congruent.php'),
         ], 'config');
-        # ----------------        
+        # --------------------------------------------------------------------------        
         \Illuminate\Database\Schema\Blueprint::macro('customMorphs', function(string $name, array $options = []) {
             $this->integer("{$name}_id", $options['integer'] ?? 10);
             $this->string ("{$name}_type", $options['string'] ?? 100);
@@ -41,6 +44,19 @@ class Service extends ServiceProvider
             }
             # -----------------------------
             return $this;
+        });
+        # --------------------------------------------------------------------------
+        \Illuminate\Database\Eloquent\Relations\MorphOne::macro('withCurrentLocale', function() {
+            return $this->orderByRaw("(
+                CASE WHEN STRCMP('$locale1', `locale`) = 0 THEN 1
+                WHEN STRCMP('{$parse1['language']}', `locale`) = 0 THEN 2
+                WHEN STRCMP('{$parse1['language']}',  SUBSTR(`locale`,1,2)) = 0 THEN 3
+                WHEN STRCMP('$locale2', `locale`) = 0 THEN 4
+                WHEN STRCMP('{$parse2['language']}', `locale`) = 0 THEN 5
+                WHEN STRCMP('{$parse2['language']}',  SUBSTR(`locale`,1,2)) = 0 THEN 6
+                ELSE 7
+                END
+            ) ASC");
         });
     }
     

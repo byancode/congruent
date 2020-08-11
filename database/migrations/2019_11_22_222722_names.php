@@ -20,7 +20,7 @@ class Names extends Migration
             $table->text('description')->nullable();
             $table->morphs('subjectable');
             $table->integer('locale_id')->index();
-            $table->json('meta')->default(new Expression('(JSON_OBJECT())'));
+            $table->json('data')->default(new Expression('(JSON_OBJECT())'));
             $table->timestampsTz();
             // -----------------------------------
             $table->unique([

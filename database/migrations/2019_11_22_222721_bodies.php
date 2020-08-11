@@ -19,7 +19,7 @@ class Bodies extends Migration
             $table->text('text')->nullable();
             $table->morphs('subjectable');
             $table->integer('locale_id')->index();
-            $table->json('meta')->default(new Expression('(JSON_OBJECT())'));
+            $table->json('data')->default(new Expression('(JSON_OBJECT())'));
             $table->timestampsTz();
             // -----------------------------------
             $table->unique([
