@@ -16,9 +16,9 @@ class Statuses extends Migration
     {
         Schema::create('statuses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('kind');
-            $table->morphs('subjectable', 'jF2acu');
-            $table->morphs('author', 'NMQs4T');
+            $table->string('type_id')->index();
+            $table->customMorphs('subjectable')->index();
+            $table->customMorphs('author')->index();
             $table->timestampsTz();
         });
     }

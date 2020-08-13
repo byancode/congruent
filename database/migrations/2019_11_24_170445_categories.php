@@ -16,8 +16,8 @@ class Categories extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('kind')->index();
-            $table->integer('category_id')->nullable()->index();
+            $table->string('type_id')->index();
+            $table->integer('parent_id')->nullable()->index();
             $table->json('options')->default(new Expression('(JSON_OBJECT())'));
             $table->json('details')->default(new Expression('(JSON_OBJECT())'));
             $table->timestampsTz();

@@ -1,16 +1,15 @@
 <?php
 
-namespace Byancode\Congruent;
+namespace Byancode\Congruent\App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Titles extends Model
+class Body extends Model
 {
-    protected $table = 'titles';
+    protected $table = 'bodies';
     
     protected $fillable = [
-        'title', 
-        'description',
+        'text',
         'locale_id', 
         'data', 
     ];

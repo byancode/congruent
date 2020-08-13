@@ -16,7 +16,7 @@ class Descriptions extends Migration
     {
         Schema::create('descriptions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('kind');
+            $table->string('type_id');
             $table->text('body')->nullable();
             $table->integer('locale_id')->index();
             $table->morphs('subjectable');

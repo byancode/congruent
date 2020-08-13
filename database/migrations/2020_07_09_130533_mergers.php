@@ -16,7 +16,7 @@ class Mergers extends Migration
     {
         Schema::create('mergers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('kind')->index();
+            $table->string('type_id')->index();
             $table->morphs('author');
             $table->morphs('subjectable');
             $table->boolean('clip')->default(false);

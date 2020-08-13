@@ -1,10 +1,10 @@
 <?php
 
-namespace Byancode\Congruent;
+namespace Byancode\Congruent\App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Names extends Model
+class Name extends Model
 {
     protected $table = 'names';
     

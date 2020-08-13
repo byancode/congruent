@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Facades\Schema;
 
-class Kinds extends Migration
+class Types extends Migration
 {
     /**
      * Run the migrations.
@@ -14,16 +14,15 @@ class Kinds extends Migration
      */
     public function up()
     {
-        Schema::create('kinds', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
+        Schema::create('types', function (Blueprint $table) {
+            $table->string('id');
             $table->string('model');
             $table->timestampsTz();
             // ------------------------------------
             $table->unique([
-                'model',
-                'name',
-            ]);
+                'id',
+                'model'
+            ],  'type_unique');
         });
     }
 
@@ -34,6 +33,6 @@ class Kinds extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kinds');
+        Schema::dropIfExists('types');
     }
 }

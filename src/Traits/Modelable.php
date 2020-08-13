@@ -12,7 +12,7 @@ trait Model
     }
     public function main()
     {
-        return (new self())->inheritAttributes($this->attributes);
+        return (new self())->inheritAttributes(['type_id' => static::type] + $this->attributes);
     }
     public function getMainClassAttribute()
     {

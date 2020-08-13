@@ -26,7 +26,7 @@ class Bodies extends Migration
                 'locale_id',
                 'subjectable_id',
                 'subjectable_type',
-            ],  'text_unique');
+            ],  'body_unique');
         });
     }
 

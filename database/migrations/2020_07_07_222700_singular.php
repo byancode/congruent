@@ -17,11 +17,11 @@ class Singular extends Migration
     {
         Schema::create('singulars', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('kind')->index();
+            $table->string('type_id')->index();
             $table->string('name')->nullable();
             $table->nullableMorphs('subjectable');
             $table->json('profile')->default(new Expression('(JSON_OBJECT())'));
-            $table->json('details')->default(new Expression('(JSON_OBJECT())'));
+            $table->json('options')->default(new Expression('(JSON_OBJECT())'));
             $table->date('birthday')->nullable();
             $table->date('deathday')->nullable();
             $table->timestampsTz();

@@ -16,14 +16,12 @@ class Signins extends Migration
     {
         Schema::create('signins', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('kind')->index();
+            $table->string('name')->nullable();
             $table->string('email')->unique();
-            $table->string('username')->unique();
+            $table->string('type_id')->index();
             $table->string('password')->nullable();
-            $table->string('displayName')->nullable();
             $table->string('confirmedEmail')->nullable();
-            $table->integer('country_id')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->timestampsTz('email_verified_at')->nullable();
             $table->json('settings')->default(new Expression('(JSON_OBJECT())'));
             $table->json('security')->default(new Expression('(JSON_OBJECT())'));
             $table->json('profile')->default(new Expression('(JSON_OBJECT())'));

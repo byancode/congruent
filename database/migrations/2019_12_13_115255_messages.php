@@ -16,9 +16,8 @@ class Messages extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('kind')->index();
+            $table->string('type_id')->index();
             $table->string('subject');
-            $table->text('body')->nullable();
             $table->morphs('subjectable');
             $table->integer('message_id')->nullable();
             $table->json('options')->default(new Expression('(JSON_OBJECT())'));

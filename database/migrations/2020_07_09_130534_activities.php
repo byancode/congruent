@@ -16,11 +16,13 @@ class Activities extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->increments('id');
-            $table->morphs('author');
-            $table->morphs('subjectable');
+            $table->string('type_id', 100)->index();
+            $table->customMorphs('author', 100)->index();
+            $table->customMorphs('subjectable', 100)->index();
             $table->timestampsTz();
             // -----------------------------
             $table->unique([
+                'type_id',
                 'author_id',
                 'author_type',
                 'subjectable_id',

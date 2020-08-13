@@ -16,7 +16,7 @@ class Comments extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('kind')->index();
+            $table->string('type_id')->index();
             $table->morphs('author');
             $table->morphs('subjectable');
             $table->text('body');

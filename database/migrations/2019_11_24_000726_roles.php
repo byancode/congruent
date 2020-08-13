@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Facades\Schema;
 
-class Tags extends Migration
+class Roles extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class Tags extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->index();
             $table->string('type_id')->index();
@@ -25,20 +25,20 @@ class Tags extends Migration
             $table->unique([
                 'name',
                 'type_id'
-            ],  'tag_unique');
+            ],  'role_unique');
         });
-        Schema::create('taggables', function (Blueprint $table) {
+        Schema::create('roleables', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('tag_id');
-            $table->integer('taggable_id');
-            $table->string( 'taggable_type', 100);
+            $table->integer('role_id');
+            $table->integer('roleable_id');
+            $table->string( 'roleable_type', 100);
             $table->timestampsTz();
             // ------------------------------------
             $table->unique([
-                'tag_id',
-                'taggable_id',
-                'taggable_type'
-            ], 'taggable_unique');
+                'role_id',
+                'roleable_id',
+                'roleable_type'
+            ],  'roleable_unique');
         });
     }
     /**
@@ -48,7 +48,7 @@ class Tags extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags');
-        Schema::dropIfExists('taggables');
+        Schema::dropIfExists('roles');
+        Schema::dropIfExists('roleables');
     }
 }

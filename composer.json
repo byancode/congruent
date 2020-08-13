@@ -7,7 +7,7 @@
         }
     ],
     "require": {
-        "byancode/auth": "dev-master"
+        "byancode/settings": "^1.0.2"
     },
     "extra": {
         "laravel": {

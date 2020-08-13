@@ -17,7 +17,7 @@ class Transactions extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string( 'kind', 70);
+            $table->string( 'type_id', 70)->index();
             $table->uuid  ( 'txid')->default(new Expression('UUID()'))->unique();
             $table->string( 'currency_code', 100)->index();
             $table->decimal('amount', 15, 8)->default('0');
