@@ -16,15 +16,15 @@ class Transactions extends Migration
     public function up()
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string( 'type_id', 70)->index();
             $table->uuid  ( 'txid')->default(new Expression('UUID()'))->unique();
             $table->string( 'currency_code', 100)->index();
             $table->decimal('amount', 15, 8)->default('0');
             $table->string ('label', 100)->nullable()->index();
             $table->string ('message')->nullable();
-            $table->customMorphs('author',      ['string' => 70, 'index' => 'w92YSC']);
-            $table->customMorphs('subjectable', ['string' => 70, 'index' => 'EI8wm8']);
+            $table->customMorphs('author',      70)->index();
+            $table->customMorphs('subjectable', 70)->index();
             $table->json('details')->default(new Expression('JSON_OBJECT()'));
             $table->timestampsTz();
             // ------------------------------------
@@ -41,14 +41,14 @@ class Transactions extends Migration
             ],  'cqkpEq');
             // ------------------------------------
             $table->index([
-                'kind',
+                'type_id',
                 'currency_code',
                 'author_id',
                 'author_type'
             ],  'NRwAYE');
             // ------------------------------------
             $table->index([
-                'kind',
+                'type_id',
                 'currency_code',
                 'subjectable_id',
                 'subjectable_type'

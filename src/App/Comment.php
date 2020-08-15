@@ -7,24 +7,22 @@ use Byancode\Congruent\Traits\Typeable;
 use Byancode\Congruent\Traits\Modelable;
 use Byancode\Congruent\Traits\Commentable;
 
-class Category extends Model
+class Comment extends Model
 {
     use Modelable, Typeable, Commentable;
     
-    protected $table = 'categories';
-    const type = 'category';
+    protected $table = 'comments';
+    const type = 'comment';
     
     protected $fillable = [
-        'name',
+        'body',
         'type_id',
         'parent_id', 
-        'options', 
-        'details'
+        'options',
     ];
 
     protected $casts = [
-        'options' => 'object',
-        'details' => 'object'
+        'options' => 'object'
     ];
 
     public function parent()

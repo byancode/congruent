@@ -15,7 +15,7 @@ class Locales extends Migration
     public function up()
     {
         Schema::create('locales', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('script_code')->nullable()->index();
             $table->string('country_code')->nullable()->index();
             $table->string('language_code')->index();

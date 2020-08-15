@@ -15,7 +15,7 @@ class Mergers extends Migration
     public function up()
     {
         Schema::create('mergers', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('type_id')->index();
             $table->morphs('author');
             $table->morphs('subjectable');

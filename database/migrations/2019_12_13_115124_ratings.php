@@ -14,7 +14,7 @@ class Ratings extends Migration
     public function up()
     {
         Schema::create('ratings', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->integer('author_id');
             $table->string ('author_type', 100);
             $table->integer('ratingable_id');

@@ -15,7 +15,7 @@ class Names extends Migration
     public function up()
     {
         Schema::create('names', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('name')->nullable();
             $table->text('description')->nullable();
             $table->morphs('subjectable');

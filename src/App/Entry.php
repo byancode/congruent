@@ -5,10 +5,11 @@ namespace Byancode\Congruent\App;
 use Illuminate\Database\Eloquent\Model;
 use Byancode\Congruent\Traits\Typeable;
 use Byancode\Congruent\Traits\Modelable;
+use Byancode\Congruent\Traits\Commentable;
 
 class Entry extends Model
 {
-    use Modelable, Typeable;
+    use Modelable, Typeable, Commentable;
     
     protected $table = 'entries';
     const type = 'entry';

@@ -1,5 +1,4 @@
 <?php
-
 namespace Byancode\Congruent\Observers;
 
 use Illuminate\Database\Eloquent\Model;

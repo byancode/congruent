@@ -15,7 +15,7 @@ class Bodies extends Migration
     public function up()
     {
         Schema::create('bodies', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->text('text')->nullable();
             $table->morphs('subjectable');
             $table->integer('locale_id')->index();

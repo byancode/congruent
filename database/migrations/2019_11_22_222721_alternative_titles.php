@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Facades\Schema;
 
-class Alternative_titles extends Migration
+class AlternativeTitles extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class Alternative_titles extends Migration
     public function up()
     {
         Schema::create('alternative_titles', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('title')->nullable();
             $table->morphs('subjectable');
             $table->integer('locale_id')->index();

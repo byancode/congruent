@@ -28,46 +28,21 @@ class Service extends ServiceProvider
     public function boot()
     {
         $this->publishes([
+            __DIR__ . '/../../database/migrations/' => base_path('/database/migrations')
+        ], 'migration');
+        # --------------------------------------------------------------------------
+        $this->publishes([
             __DIR__ . '/../../config/congruent.php' => config_path('congruent.php'),
         ], 'config');
         # --------------------------------------------------------------------------
         $this->defineMacros();
     }
-    
 
-    /**
-     * Checks if the config is valid.
-     *
-     * @param  array|null $config the package configuration
-     * @throws InvalidConfiguration exception or null
-     * @see  \Byancode\Congruent\Exceptions\InvalidConfiguration
-     */
-    protected function guardAgainstInvalidConfiguration(array $config = null)
-    {
-        // Here you can add as many checks as your package config needed to
-        // consider it valid.
-        // @see \Me\MyPackage\Exceptions\InvalidConfiguration
-        if (empty($config['version'])) {
-            //throw InvalidConfiguration::versionNotSpecified();
-        }
-    }
-
-    /**
-     * Check if package is running under Lumen app.
-     *
-     * @return bool
-     */
-    protected function isLumen()
-    {
-        return str_contains($this->app->version(), 'Lumen') === true;
-    }
 
     protected function defineMacros()
     {
-        
-        # --------------------------------------------------------------------------        
-        \Illuminate\Database\Schema\Blueprint::macro('customMorphs', function(string $name, int $string = 100, int $integer = 10) {
-            $id = $this->unsignedBigInteger("{$name}_id", $integer);
+        \Illuminate\Database\Schema\Blueprint::macro('customMorphs', function(string $name, int $string = 100) {
+            $id = $this->bigInteger("{$name}_id")->unsigned();
             $type = $this->string("{$name}_type", $string);
             # -----------------------------
             return new class($this, $name, compact('id', 'type')) {
@@ -87,7 +62,7 @@ class Service extends ServiceProvider
                     $this->morph['type']->nullable($value);
                     return $this;
                 }
-                public function column(string $type, string $name)
+                public function column(string $type, string $name = null)
                 {
                     $name = $name ?? $this->field;
                     return \call_user_func([$this->table, $type], [

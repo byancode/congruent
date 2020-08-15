@@ -2,7 +2,7 @@
 
 namespace Byancode\Congruent\Traits;
 
-trait Model
+trait Modelable
 {
     public function inheritAttributes(array $attributes)
     {

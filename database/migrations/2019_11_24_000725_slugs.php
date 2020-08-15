@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Facades\Schema;
 
-class Statuses extends Migration
+class Slugs extends Migration
 {
     /**
      * Run the migrations.
@@ -14,15 +14,14 @@ class Statuses extends Migration
      */
     public function up()
     {
-        Schema::create('statuses', function (Blueprint $table) {
+        Schema::create('slugs', function (Blueprint $table) {
             $table->id();
-            $table->string('type_id')->index();
+            $table->string('name')->unique();
+            $table->string('type_id');
             $table->customMorphs('subjectable')->index();
-            $table->customMorphs('author')->index();
             $table->timestampsTz();
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -30,6 +29,6 @@ class Statuses extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('statuses');
+        Schema::dropIfExists('slugs');
     }
 }

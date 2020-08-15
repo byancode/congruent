@@ -15,7 +15,7 @@ class Currencies extends Migration
     public function up()
     {
         Schema::create('currencies', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('type_id')->index();
             $table->string('code')->unique();
             $table->string('symbol')->nullable();

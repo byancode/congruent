@@ -15,7 +15,7 @@ class Collections extends Migration
     public function up()
     {
         Schema::create('collectionables', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->integer('collection_id');
             $table->morphs('collectionable', 'VHuwqA');
             $table->timestampsTz();

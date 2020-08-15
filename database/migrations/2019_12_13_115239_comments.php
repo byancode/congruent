@@ -15,11 +15,12 @@ class Comments extends Migration
     public function up()
     {
         Schema::create('comments', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('type_id')->index();
             $table->morphs('author');
             $table->morphs('subjectable');
             $table->text('body');
+            $table->json('options')->default(new Expression('JSON_OBJECT()'));
             $table->timestampsTz();
         });
     }

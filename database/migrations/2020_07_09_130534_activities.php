@@ -15,7 +15,7 @@ class Activities extends Migration
     public function up()
     {
         Schema::create('activities', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('type_id', 100)->index();
             $table->customMorphs('author', 100)->index();
             $table->customMorphs('subjectable', 100)->index();

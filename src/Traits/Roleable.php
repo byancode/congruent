@@ -1,5 +1,5 @@
 <?php
-namespace App\Traits;
+namespace Byancode\Congruent\Traits;
 
 trait Roleable
 {

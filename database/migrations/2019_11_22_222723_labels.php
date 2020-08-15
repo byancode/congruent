@@ -15,17 +15,11 @@ class Labels extends Migration
     public function up()
     {
         Schema::create('labels', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('name')->nullable();
-            $table->morphs('subjectable');
+            $table->customMorphs('subjectable')->index();
             $table->json('meta')->default(new Expression('(JSON_OBJECT())'));
             $table->timestampsTz();
-            // -----------------------------------
-            $table->index([
-                'locale_id',
-                'subjectable_id',
-                'subjectable_type',
-            ],  'label_index');
         });
     }
 

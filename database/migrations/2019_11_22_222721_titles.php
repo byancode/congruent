@@ -15,7 +15,7 @@ class Titles extends Migration
     public function up()
     {
         Schema::create('titles', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->morphs('subjectable');

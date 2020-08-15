@@ -16,7 +16,7 @@ class Singular extends Migration
     public function up()
     {
         Schema::create('singulars', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('type_id')->index();
             $table->string('name')->nullable();
             $table->nullableMorphs('subjectable');

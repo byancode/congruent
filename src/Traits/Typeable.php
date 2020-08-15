@@ -25,7 +25,8 @@ trait Typeable
     }
 
     protected static function boot() {
-        static::observe(TypeableObserver::class);
+        parent::boot();
+        static::observe(new TypeableObserver);
         static::addGlobalScope(new TypeableScope);
     }
 }

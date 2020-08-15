@@ -15,7 +15,7 @@ class Roles extends Migration
     public function up()
     {
         Schema::create('roles', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('name')->index();
             $table->string('type_id')->index();
             $table->json('options')->default(new Expression('(JSON_OBJECT())'));

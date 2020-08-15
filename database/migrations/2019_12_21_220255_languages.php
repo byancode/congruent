@@ -15,7 +15,7 @@ class Languages extends Migration
     public function up()
     {
         Schema::create('languages', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('code')->unique();
             $table->json('options')->default(new Expression('(JSON_OBJECT())'));
             $table->json('details')->default(new Expression('(JSON_OBJECT())'));
@@ -25,8 +25,8 @@ class Languages extends Migration
         Schema::create('languageables', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('language_id');
-            $table->integer('anguageable_id');
-            $table->string ('anguageable_type', 100);
+            $table->integer('languageable_id');
+            $table->string ('languageable_type', 100);
             $table->timestampsTz();
             # ---------------------------
             $table->unique([

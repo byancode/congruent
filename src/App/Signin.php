@@ -2,7 +2,6 @@
 
 namespace Byancode\Congruent\App;
 
-use Laravel\Passport\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -14,7 +13,7 @@ use Byancode\Congruent\Traits\Modelable;
 
 class Signin extends Authenticatable
 {
-    use HasApiTokens, Modelable, Typeable, Notifiable;
+    use Modelable, Typeable, Notifiable;
     
     protected $table = 'signins';
     const type = 'user';
@@ -51,6 +50,9 @@ class Signin extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'settings' => 'object', 
+        'security' => 'object', 
+        'profile' => 'object'
     ];
 
     public function validateForPassportPasswordGrant($password)

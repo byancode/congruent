@@ -16,7 +16,7 @@ class Entries extends Migration
     public function up()
     {
         Schema::create('entries', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('type_id')->index();
             $table->nullableMorphs('subjectable');
             $table->json('options')->default(new Expression('(JSON_OBJECT())'));

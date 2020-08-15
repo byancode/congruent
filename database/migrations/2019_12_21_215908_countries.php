@@ -15,7 +15,7 @@ class Countries extends Migration
     public function up()
     {
         Schema::create('countries', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('code')->unique();
             $table->json('options')->default(new Expression('(JSON_OBJECT())'));
             $table->json('details')->default(new Expression('(JSON_OBJECT())'));

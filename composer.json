@@ -9,6 +9,11 @@
     "require": {
         "byancode/settings": "^1.0.2"
     },
+    "autoload": {
+        "psr-4": {
+            "Byancode\\Congruent\\": "src/"
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [

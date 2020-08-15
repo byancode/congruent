@@ -16,7 +16,7 @@ class Exchanges extends Migration
     {
         // ------------------------------------------------------------------
         Schema::create('exchanges', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('from_currency_code')->nullable();
             $table->string('to_currency_code')->nullable();
             $table->boolean('active');

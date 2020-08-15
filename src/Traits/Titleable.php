@@ -1,6 +1,7 @@
 <?php
-namespace App\Traits;
-use Byancode\Library\RC4;
+namespace Byancode\Congruent\Traits;
+
+use Byancode\Congruent\App\Title;
 
 trait Titleable
 {

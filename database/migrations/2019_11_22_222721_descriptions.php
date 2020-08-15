@@ -15,7 +15,7 @@ class Descriptions extends Migration
     public function up()
     {
         Schema::create('descriptions', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('type_id');
             $table->text('body')->nullable();
             $table->integer('locale_id')->index();

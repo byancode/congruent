@@ -1,5 +1,7 @@
 <?php
-namespace App\Traits;
+namespace Byancode\Congruent\Traits;
+
+use Byancode\Congruent\App\Name;
 
 trait Nameable
 {
