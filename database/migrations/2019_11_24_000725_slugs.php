@@ -17,7 +17,6 @@ class Slugs extends Migration
         Schema::create('slugs', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('type_id');
             $table->customMorphs('subjectable')->index();
             $table->timestampsTz();
         });

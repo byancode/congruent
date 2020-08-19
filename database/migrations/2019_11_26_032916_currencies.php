@@ -16,13 +16,13 @@ class Currencies extends Migration
     {
         Schema::create('currencies', function (Blueprint $table) {
             $table->id();
-            $table->string('type_id')->index();
             $table->string('code')->unique();
+            $table->string('type_id')->index();
             $table->string('symbol')->nullable();
             $table->integer('decimal')->default(0);
             $table->integer('country_code')->nullable();
-            $table->json('options')->default(new Expression('(JSON_OBJECT())'));
-            $table->json('details')->default(new Expression('(JSON_OBJECT())'));
+            $table->json('options')->default(new Expression('JSON_OBJECT()'));
+            $table->json('details')->default(new Expression('JSON_OBJECT()'));
             $table->timestampsTz();
         });
     }

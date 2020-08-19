@@ -28,5 +28,9 @@ trait Typeable
         parent::boot();
         static::observe(new TypeableObserver);
         static::addGlobalScope(new TypeableScope);
+        # -----------------------------------------
+        if (\function_exists('static::bootable')) {
+            static::bootable();
+        }
     }
 }

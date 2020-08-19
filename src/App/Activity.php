@@ -44,4 +44,9 @@ class Activity extends Model
     {
         return $this->scopeAs(Auth::user());
     }
+
+    public function subjectable()
+    {
+        return $this->morphTo('subjectable');
+    }
 }

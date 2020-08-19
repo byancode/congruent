@@ -18,8 +18,8 @@ class Categories extends Migration
             $table->id();
             $table->string('type_id')->index();
             $table->integer('parent_id')->nullable()->index();
-            $table->json('options')->default(new Expression('(JSON_OBJECT())'));
-            $table->json('details')->default(new Expression('(JSON_OBJECT())'));
+            $table->json('options')->default(new Expression('JSON_OBJECT()'));
+            $table->json('details')->default(new Expression('JSON_OBJECT()'));
             $table->timestampsTz();
         });
         Schema::create('categorizables', function (Blueprint $table) {
