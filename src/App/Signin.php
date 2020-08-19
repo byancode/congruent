@@ -9,11 +9,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use Byancode\Congruent\Traits\Typeable;
 use Byancode\Congruent\Traits\Modelable;
+use Byancode\Congruent\Traits\Statusable;
+use Byancode\Congruent\Traits\Activityable;
 
 
 class Signin extends Authenticatable
 {
-    use Modelable, Typeable, Notifiable;
+    use Modelable, Typeable, Notifiable, Statusable, Activityable;
     
     protected $table = 'signins';
     const type = 'user';
@@ -59,4 +61,5 @@ class Signin extends Authenticatable
     {
         return Hash::check($password, $this->password);
     }
+
 }

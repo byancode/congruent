@@ -1,17 +1,18 @@
 <?php
 namespace Byancode\Congruent\Traits;
 
+use Byancode\Congruent\Role;
+
 trait Roleable
 {
     public function roleableClass()
     {
-        return (new ReflectionClass($this->roleable))->getName();
+        return (new ReflectionClass(static::roleable ?? Role::class))->getName();
     }
     public function roles()
     {
         return $this->morphToMany($this->roleableClass(), 'roleable', 'roleables', 'role_id');
     }
-
     public function hasRoles(Array $roles)
     {
         return $this->roles->whereIn('name', $roles)->isNotEmpty();

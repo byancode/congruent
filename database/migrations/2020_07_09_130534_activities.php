@@ -19,15 +19,35 @@ class Activities extends Migration
             $table->string('type_id', 100)->index();
             $table->customMorphs('author', 100)->index();
             $table->customMorphs('subjectable', 100)->index();
+            $table->json('details')->default(new Expression('JSON_OBJECT()'));
             $table->timestampsTz();
             // -----------------------------
-            $table->unique([
+            $table->index([
+                'author_id',
+                'author_type',
+                'subjectable_id',
+                'subjectable_type',
+            ],  'activity_index_1');
+            # ----------------------
+            $table->index([
                 'type_id',
                 'author_id',
                 'author_type',
                 'subjectable_id',
                 'subjectable_type',
-            ],  'activity_unique');
+            ],  'activity_index_2');
+            # ----------------------
+            $table->index([
+                'type_id',
+                'subjectable_id',
+                'subjectable_type',
+            ],  'activity_index_3');
+            # ----------------------
+            $table->index([
+                'type_id',
+                'author_id',
+                'author_type',
+            ],  'activity_index_4');
         });
     }
 

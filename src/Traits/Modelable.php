@@ -1,5 +1,4 @@
 <?php
-
 namespace Byancode\Congruent\Traits;
 
 trait Modelable

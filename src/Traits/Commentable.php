@@ -1,15 +1,23 @@
 <?php
 namespace Byancode\Congruent\Traits;
-use Byancode\Congruent\App\Comment;
 use Illuminate\Support\Facades\Auth;
+use Byancode\Congruent\App\Comment;
 
 trait Commentable
 {
-    public function comment(string $text)
+    public function comment()
     {
-        return $this->commentAs(Auth::user(), $text);
+        return $this->morphOne(Comment::class, 'subjectable')->orderBy('id', 'DESC');
     }
-    public function commentAs(Model $user, string $text)
+    public function setCommentAttribute(string $text)
+    {
+        return $this->createComment($text);
+    }
+    public function createComment(string $text)
+    {
+        return $this->createCommentAs(Auth::user(), $text);
+    }
+    public function createCommentAs(Model $user, string $text)
     {
         return $this->morphOne(Comment::class, 'subjectable')->create([
             'body' => $text,
@@ -19,6 +27,6 @@ trait Commentable
     }
     public function comments()
     {
-        return $this->morphMany(Comment::class, 'subjectable')->where();
+        return $this->morphMany(Comment::class, 'subjectable');
     }
 }
