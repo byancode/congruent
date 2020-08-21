@@ -16,7 +16,6 @@ class Files extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->id();
-            $table->uuid   ('uuid')->default(new Expression('UUID()'))->unique();
             $table->string ('disk');
             $table->string ('link');
             $table->string ('path');
@@ -55,25 +54,6 @@ class Files extends Migration
                 'fileable_type'
             ],  'fileable_index_4');
         });
-        Schema::create('fileables', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger  ('file_id');
-            $table->customMorphs('fileable')->index();
-            $table->timestampsTz();
-        });
-        Schema::create('uniqfiles', function (Blueprint $table) {
-            $table->id();
-            $table->string      ('type_id', 100);
-            $table->bigInteger  ('file_id');
-            $table->customMorphs('fileable');
-            $table->timestampsTz();
-            # ---------------------------
-            $table->unique([
-                'type_id',
-                'fileable_id',
-                'fileable_type'
-            ],  'fileable_unique');
-        });
     }
 
     /**
@@ -84,7 +64,5 @@ class Files extends Migration
     public function down()
     {
         Schema::dropIfExists('files');
-        Schema::dropIfExists('fileables');
-        Schema::dropIfExists('uniqfiles');
     }
 }

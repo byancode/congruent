@@ -9,13 +9,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use Byancode\Congruent\Traits\Typeable;
 use Byancode\Congruent\Traits\Modelable;
+use Byancode\Congruent\traits\Singleable;
 use Byancode\Congruent\Traits\Statusable;
 use Byancode\Congruent\Traits\Activityable;
 
-
 class Signin extends Authenticatable
 {
-    use Modelable, Typeable, Notifiable, Statusable, Activityable;
+    use Modelable, Typeable, Notifiable, Singleable, Statusable, Activityable;
     
     protected $table = 'signins';
     const type = 'user';
@@ -62,4 +62,8 @@ class Signin extends Authenticatable
         return Hash::check($password, $this->password);
     }
 
+    public function photo()
+    {
+        return $this->single(Files\Photo::class);
+    }
 }

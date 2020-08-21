@@ -1,5 +1,4 @@
 <?php
-
 namespace Byancode\Congruent\App;
 
 use Illuminate\Database\Eloquent\Model;

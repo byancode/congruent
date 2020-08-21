@@ -1,8 +1,8 @@
 <?php
 namespace Byancode\Congruent\Traits;
+
 use Byancode\Congruent\App\Activity;
 use Illuminate\Support\Facades\Auth;
-use Byancode\Congruent\App\Signin;
 
 trait Activityable
 {

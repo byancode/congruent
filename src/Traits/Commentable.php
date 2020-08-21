@@ -1,5 +1,6 @@
 <?php
 namespace Byancode\Congruent\Traits;
+
 use Illuminate\Support\Facades\Auth;
 use Byancode\Congruent\App\Comment;
 

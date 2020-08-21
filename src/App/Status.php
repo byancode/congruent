@@ -2,6 +2,7 @@
 
 namespace Byancode\Congruent\App;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Byancode\Congruent\Traits\Typeable;
@@ -19,11 +20,10 @@ class Status extends Model
     protected $fillable = [
         'type_id'
     ];
-
     
-    public static function scopeApproved($query)
+    public static function scopeOn($query, $types)
     {
-        return $query->where('type_id', 'approved');
+        return $query->whereIn('type_id', Arr::wrap($types));
     }
     
     public function scopeAs($query, $model)

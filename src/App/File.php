@@ -93,4 +93,11 @@ class File extends Model
             $file->storage->delete($file->path);
         });
     }
+
+    public function scopeAdd($query, string $type, $file)
+    {
+        $query->create([
+            'type_id' => $type
+        ]);
+    }
 }
