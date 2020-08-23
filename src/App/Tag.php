@@ -14,6 +14,7 @@ class Tag extends Model
     use Modelable, Typeable, Nameable, Statusable, Activityable;
     
     protected $table = 'tags';
+    protected $dateFormat = 'Y-m-d H:i:s.u';
     const type = 'tag';
     
     protected $fillable = [

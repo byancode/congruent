@@ -14,6 +14,7 @@ class Category extends Model
     use Modelable, Typeable, Commentable, Statusable, Activityable;
     
     protected $table = 'categories';
+    protected $dateFormat = 'Y-m-d H:i:s.u';
     const type = 'category';
     
     protected $fillable = [

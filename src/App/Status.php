@@ -15,6 +15,7 @@ class Status extends Model
     use Modelable, Typeable, Commentable, Activityable;
     
     protected $table = 'statuses';
+    protected $dateFormat = 'Y-m-d H:i:s.u';
     const type = 'pending';
     
     protected $fillable = [

@@ -13,6 +13,7 @@ class Role extends Model
     use Modelable, Typeable, Statusable, Activityable;
     
     protected $table = 'roles';
+    protected $dateFormat = 'Y-m-d H:i:s.u';
     const type = 'role';
     
     protected $fillable = [

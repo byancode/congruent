@@ -16,6 +16,7 @@ class File extends Model
     use Modelable, Typeable, Statusable, Commentable, Activityable;
 
     protected $table = 'files';
+    protected $dateFormat = 'Y-m-d H:i:s.u';
     const type = 'file';
 
     protected $fillable = [

@@ -14,6 +14,7 @@ class Comment extends Model
     use Modelable, Typeable, Commentable, Statusable, Activityable;
     
     protected $table = 'comments';
+    protected $dateFormat = 'Y-m-d H:i:s.u';
     const type = 'comment';
     
     protected $fillable = [

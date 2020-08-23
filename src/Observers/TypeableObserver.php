@@ -7,7 +7,9 @@ class TypeableObserver
 {
     public function defineType(Model $model)
     {
-        $model->type_id = $model::type;
+        if (empty($model->type_id) && $model::type !== null) {
+            $model->type_id = $model::type;
+        }
     }
     public function retrieved(Model $model)
     {

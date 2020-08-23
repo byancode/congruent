@@ -11,6 +11,7 @@ class Title extends Model
     use Statusable, Activityable;
 
     protected $table = 'titles';
+    protected $dateFormat = 'Y-m-d H:i:s.u';
     
     protected $fillable = [
         'title', 

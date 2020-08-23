@@ -14,6 +14,7 @@ class Relation extends MorphPivot
     use Modelable, Typeable, Statusable, Commentable, Activityable;
     
     protected $table = 'relationables';
+    protected $dateFormat = 'Y-m-d H:i:s.u';
 
     protected $fillable = [
         'type_id',

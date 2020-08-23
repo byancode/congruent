@@ -15,6 +15,7 @@ class Singular extends Model
     use Modelable, Typeable, Commentable, Singleable, Statusable, Activityable;
     
     protected $table = 'singulars';
+    protected $dateFormat = 'Y-m-d H:i:s.u';
     const type = 'singular';
     
     protected $fillable = [

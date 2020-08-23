@@ -16,6 +16,7 @@ class TypeableScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('type_id', $model::type);
+        $class = \get_class($model);
+        defined("{$class}::type") && $builder->where('type_id', $model::type);
     }
 }

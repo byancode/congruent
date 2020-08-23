@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Facades\Schema;
 
-class Relations extends Migration
+class Reactions extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,9 @@ class Relations extends Migration
      */
     public function up()
     {
-        Schema::create('relationables', function (Blueprint $table) {
+        Schema::create('reactionables', function (Blueprint $table) {
             $table->id();
-            $table->string('type_id');
+            $table->string('type_id', 100);
             $table->customMorphs('modelable', 100)->index();
             $table->customMorphs('relationable', 100)->index();
             $table->json('details')->default(new Expression('JSON_OBJECT()'));
@@ -27,7 +27,7 @@ class Relations extends Migration
                 'modelable_id',
                 'modelable_type',
                 'relationable_type',
-            ],  'relation_unique');
+            ],  'reaction_unique');
         });
     }
 
@@ -38,6 +38,6 @@ class Relations extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('relationables');
+        Schema::dropIfExists('reactionables');
     }
 }

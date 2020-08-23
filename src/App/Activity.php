@@ -11,7 +11,7 @@ class Activity extends Model
     use Modelable, Typeable;
     
     protected $table = 'activities';
-    const type = 'created';
+    protected $dateFormat = 'Y-m-d H:i:s.u';
     
     protected $fillable = [
         'type_id', 
@@ -21,10 +21,12 @@ class Activity extends Model
     ];
 
     protected $hidden = [
+        'type_id',
         'author_id',
         'author_type',
         'subjectable_id',
         'subjectable_type',
+        'updated_at'
     ];
 
     protected $casts = [

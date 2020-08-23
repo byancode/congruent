@@ -12,6 +12,7 @@ class Type extends Model
     use Nameable, Statusable, Activityable;
     
     protected $table = 'types';
+    protected $dateFormat = 'Y-m-d H:i:s.u';
     public $incrementing = false;
     
     protected $fillable = [

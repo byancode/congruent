@@ -14,6 +14,7 @@ class Entry extends Model
     use Modelable, Typeable, Commentable, Statusable, Activityable, Fileable;
     
     protected $table = 'entries';
+    protected $dateFormat = 'Y-m-d H:i:s.u';
     const type = 'entry';
     
     protected $fillable = [

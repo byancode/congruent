@@ -11,6 +11,7 @@ class Name extends Model
     use Statusable, Activityable;
 
     protected $table = 'names';
+    protected $dateFormat = 'Y-m-d H:i:s.u';
     
     protected $fillable = [
         'name', 

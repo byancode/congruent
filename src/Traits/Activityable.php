@@ -8,7 +8,7 @@ trait Activityable
 {
     public function activity()
     {
-        return $this->morphOne(Activity::class, 'subjectable')->orderBy('id', 'DESC');
+        return $this->morphOne(Activity::class, 'subjectable')->latest();
     }
     public function createActivity(string $type, array $data = [])
     {
@@ -17,10 +17,10 @@ trait Activityable
     public function createActivityAs($author, string $type, array $data = [])
     {
         return $this->morphOne(Activity::class, 'subjectable')->create([
-            'author_type' => $type,
+            'type_id' => $type,
+            'details' => $data,
             'author_id' => $author->id,
             'author_type' => \get_class($author),
-            'details' => $data,
         ]);
     }
     public function activities()

@@ -20,11 +20,11 @@ class Signins extends Migration
             $table->string('email')->unique();
             $table->string('type_id')->index();
             $table->string('password')->nullable();
-            $table->string('confirmedEmail')->nullable();
+            $table->string('email_confirmed')->nullable();
             $table->timestampTz('email_verified_at')->nullable();
-            $table->json('settings')->default(new Expression('(JSON_OBJECT())'));
-            $table->json('security')->default(new Expression('(JSON_OBJECT())'));
-            $table->json('profile')->default(new Expression('(JSON_OBJECT())'));
+            $table->json('security')->default(new Expression('JSON_OBJECT()'));
+            $table->json('options')->default(new Expression('JSON_OBJECT()'));
+            $table->json('profile')->default(new Expression('JSON_OBJECT()'));
             $table->rememberToken();
             $table->timestampsTz();
         });

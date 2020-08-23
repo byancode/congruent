@@ -18,6 +18,7 @@ class Signin extends Authenticatable
     use Modelable, Typeable, Notifiable, Singleable, Statusable, Activityable;
     
     protected $table = 'signins';
+    protected $dateFormat = 'Y-m-d H:i:s.u';
     const type = 'user';
     /**
      * The attributes that are mass assignable.
@@ -29,8 +30,8 @@ class Signin extends Authenticatable
         'email', 
         'type_id', 
         'password',
-        'settings', 
         'security', 
+        'options', 
         'profile', 
         'confirmedEmail', 
         'email_verified_at',
@@ -42,7 +43,7 @@ class Signin extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'type_id', 'security'
     ];
 
     /**
@@ -52,8 +53,8 @@ class Signin extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'settings' => 'object', 
         'security' => 'object', 
+        'options' => 'object', 
         'profile' => 'object'
     ];
 
