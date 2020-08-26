@@ -8,17 +8,17 @@ trait Statusable
 {
     public function status()
     {
-        return $this->morphOne(Status::class, 'subjectable')->orderBy('id', 'DESC');
+        return $this->morphOne(Status::class, 'subjectable')->latest('id');
     }
     public function setStatusAttribute(string $type)
     {
-        return $this->createStatus($text);
+        return $this->createStatus($type);
     }
     public function createStatus(string $type)
     {
-        return $this->createStatusAs(Auth::user(), $text);
+        return $this->createStatusAs(Auth::user(), $type);
     }
-    public function createStatusAs(Model $user, string $type)
+    public function createStatusAs($user, string $type)
     {
         return $this->morphOne(Status::class, 'subjectable')->create([
             'type_id' => $type,

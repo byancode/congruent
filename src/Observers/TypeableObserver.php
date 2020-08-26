@@ -64,10 +64,10 @@ class TypeableObserver
     }
     public function deleted(Model $model)
     {
-        # code...
+        
     }
     public function forceDeleted(Model $model)
     {
-        # code...
+        
     }
 }

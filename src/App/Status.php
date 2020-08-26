@@ -13,20 +13,29 @@ use Byancode\Congruent\Traits\Activityable;
 class Status extends Model
 {
     use Modelable, Typeable, Commentable, Activityable;
-    
+
     protected $table = 'statuses';
     protected $dateFormat = 'Y-m-d H:i:s.u';
-    const type = 'pending';
-    
+
     protected $fillable = [
-        'type_id'
+        'type_id',
+        'author_id',
+        'author_type'
     ];
-    
-    public static function scopeOn($query, $types)
+
+    protected $hidden = [
+        'author_id',
+        'author_type',
+        'subjectable_id',
+        'subjectable_type',
+        'updated_at',
+    ];
+
+    public static function scopeCode($query, $types)
     {
         return $query->whereIn('type_id', Arr::wrap($types));
     }
-    
+
     public function scopeAs($query, $model)
     {
         return $query->where([

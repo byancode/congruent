@@ -12,10 +12,11 @@ use Byancode\Congruent\Traits\Modelable;
 use Byancode\Congruent\traits\Singleable;
 use Byancode\Congruent\Traits\Statusable;
 use Byancode\Congruent\Traits\Activityable;
+use Byancode\Congruent\Traits\Variableable;
 
 class Signin extends Authenticatable
 {
-    use Modelable, Typeable, Notifiable, Singleable, Statusable, Activityable;
+    use Modelable, Typeable, Notifiable, Singleable, Statusable, Activityable, Variableable;
     
     protected $table = 'signins';
     protected $dateFormat = 'Y-m-d H:i:s.u';
@@ -30,10 +31,9 @@ class Signin extends Authenticatable
         'email', 
         'type_id', 
         'password',
-        'security', 
         'options', 
-        'profile', 
-        'confirmedEmail', 
+        'profile',
+        'email_confirmed', 
         'email_verified_at',
     ];
 
@@ -66,5 +66,10 @@ class Signin extends Authenticatable
     public function photo()
     {
         return $this->single(Files\Photo::class);
+    }
+
+    public function getVerifiedAttribute()
+    {
+        return $this->email === $this->email_confirmed;
     }
 }
