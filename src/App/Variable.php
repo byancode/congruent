@@ -18,7 +18,6 @@ class Variable extends Model
     protected $dateFormat = 'Y-m-d H:i:s.u';
     
     protected $fillable = [
-        'key',
         'value'
     ];
 
@@ -30,7 +29,7 @@ class Variable extends Model
     
     public function getValueAttribute(string $data)
     {
-        return \json_decode($data ?: 'null', true);
+        return \json_decode($data ?: 'null');
     }
     public function setValueAttribute($data)
     {

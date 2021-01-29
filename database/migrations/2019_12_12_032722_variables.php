@@ -17,13 +17,11 @@ class Variables extends Migration
         Schema::create('variables', function (Blueprint $table) {
             $table->id();
             $table->string('type_id')->index();
-            $table->string('key')->index();
             $table->json('value')->nullable();
             $table->customMorphs('author')->index();
             $table->timestampsTz();
             // ------------------------------------
             $table->unique([
-                'key',
                 'type_id',
                 'author_id',
                 'author_type',

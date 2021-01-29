@@ -5,12 +5,8 @@ use Byancode\Congruent\App\Variable;
 
 trait Variableable
 {
-    public function variable(string $key, string $class = null)
+    public function variable(string $class)
     {
-        return $this->morphOne($class ?? Variable::classs, 'author')->where('key', $key);
-    }
-    public function variableable(string $class)
-    {
-        return $this->morphMany($class, 'author');
+        return $this->morphOne($class, 'author');
     }
 }

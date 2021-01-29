@@ -2,13 +2,13 @@
 
 namespace Byancode\Congruent\App;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\Model;
-use Byancode\Congruent\Traits\Typeable;
-use Byancode\Congruent\Traits\Modelable;
-use Byancode\Congruent\Traits\Commentable;
 use Byancode\Congruent\Traits\Activityable;
+use Byancode\Congruent\Traits\Commentable;
+use Byancode\Congruent\Traits\Modelable;
+use Byancode\Congruent\Traits\Typeable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Arr;
 
 class Status extends Model
 {
@@ -20,10 +20,11 @@ class Status extends Model
     protected $fillable = [
         'type_id',
         'author_id',
-        'author_type'
+        'author_type',
     ];
 
     protected $hidden = [
+        'type_id',
         'author_id',
         'author_type',
         'subjectable_id',
@@ -31,21 +32,45 @@ class Status extends Model
         'updated_at',
     ];
 
-    public static function scopeCode($query, $types)
+    protected $appends = [
+        'code',
+    ];
+
+    public static function scopeIs($query, $types)
     {
-        return $query->whereIn('type_id', Arr::wrap($types));
+        if (
+            ($item = $query->latest('id')->first()) &&
+            \in_array($item->type_id, Arr::wrap($types))
+        ) {
+            return $item;
+        } else {
+            return null;
+        }
+    }
+    public static function scopeHas($query, $types)
+    {
+        return boolval(static::scopeIs($query, $types));
+    }
+    public static function scopeAvailable($query)
+    {
+        return $query->latest('id')->first();
     }
 
     public function scopeAs($query, $model)
     {
         return $query->where([
             'author_id' => $model->id,
-            'author_type' => \get_class($model)
+            'author_type' => \get_class($model),
         ]);
     }
 
     public function scopeMe($query)
     {
         return $this->scopeAs(Auth::user());
+    }
+
+    public function getCodeAttribute()
+    {
+        return $this->getOriginal('type_id');
     }
 }

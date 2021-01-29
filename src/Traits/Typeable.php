@@ -4,7 +4,7 @@ namespace Byancode\Congruent\Traits;
 
 use Byancode\Congruent\Observers\TypeableObserver;
 use Byancode\Congruent\Scopes\TypeableScope;
-use Byancode\Congruent\Type;
+use Byancode\Congruent\App\Type;
 
 trait Typeable
 {
